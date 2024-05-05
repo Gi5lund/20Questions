@@ -65,10 +65,6 @@ currentNodediv.innerHTML=`<div>${node.question} </div>
         <button id="${current.no.id} "class="no">No</button>`;
         currentNodediv.classList.add("node")
    
-    // currentNodediv.innerHTML=`<div>${node.question} </div>
-    // <button id="-1" class="yes">Yes</button>
-    //     <button id="-2" class="no">No</button>`;
-    //     currentNodediv.classList.add("node")
     document.querySelector("#current-node").appendChild(currentNodediv);
 }
 }
@@ -130,32 +126,38 @@ if(index<0){
         saveTreeAsJson(Qtree,"tree.json");
     }
     else if(button.id==="start"){
-        const nodes=Qtree.nodesToArray();
-    //let node=Qtree.getRoot();
-    currentNode=nodes[0];
-        showCurrentNode(currentNode)
-        document.querySelector("#start").classList.add("hide");
+     runLoop();
+     document.querySelector("#start").classList.add("hide");
     }
     else{
         console.error("buttonClicked: unknown button id",button.id);
     }
 }
-
+function runLoop(){
+    const nodes=Qtree.nodesToArray();
+    //let node=Qtree.getRoot();
+    currentNode=nodes[0];
+        showCurrentNode(currentNode)
+        
+}
 function getUserReponse(node){
     currentNode=node;
     const userResponsDiv=document.querySelector("#user-response");
     userResponsDiv.classList.remove("hide");
-    userResponsDiv.addEventListener("submit",(event,currentNode)=>{
+    userResponsDiv.addEventListener("click",(event,currentNode)=>{
         event.preventDefault();
-        const answer=document.querySelector("#answer").nodeValue;
-        const newQuestion=document.querySelector("#question").nodeValue;
+        const answer="Is it a "+document.querySelector("#answer").value;
+        const newQuestion=document.querySelector("#question").value;
       console.log(answer," : ",newQuestion);
-      
-        const newNodes=updateTree(answer,newQuestion);
-        Qtree=newNodes.answer;
-        currentNode=newNodes.newQuestion;
-        showCurrentNode(currentNode);
+      Qtree.updateTree(newQuestion,answer,currentNode);
+    //   const qNode=Qtree.insertNode(newQuestion,node);
+    //   const aNode=Qtree
+        // const newNodes=updateTree(answer,newQuestion);
+        // Qtree=newNodes.answer;
+        // currentNode=newNodes.newQuestion;
+        // showCurrentNode(currentNode);
         userResponsDiv.classList.add("hide");
+        document.querySelector("#start").classList.remove("hide");
 
     })
  

@@ -56,11 +56,24 @@ export class Node{
         return node.question;
     }
     insertNode(question,currentnode){
-        let node=new Node();
-        node.id=this.nextId++;
-        node.question=question;
-       node.parent=currentnode;
-       currentnode.yes=node;
+        let qnode=new Node();
+        qnode.id=this.nextId++;
+        qnode.question=question;
+       qnode.parent=currentnode;
+       currentnode.yes=qnode;
+       return qnode;
+    }
+    updateTree(question, answer,currentnode){
+        let qnode=new Node();
+        qnode.id=this.nextId++;
+        qnode.question=question;
+        qnode.parent=currentnode;
+        currentnode.no=this.getNode(qnode.id);
+        let anode=new Node();
+        anode.id=this.nextId++;
+        anode.question=answer;
+        anode.parent=qnode;
+        qnode.yes=this.getNode(anode.id);
     }
     printTree(node=this.root){
        if(node!=null){
