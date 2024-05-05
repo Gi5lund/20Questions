@@ -32,28 +32,43 @@ function showCurrentNode(node){
        node.classList.add("hide");
    }
   const current=node;
+    console.log("show current: ",current)
    console.log(isLeaf(current))
 //    if(isLeaf(current)){
 //     current.yes.id=-1;
 //     current.no.id=-2;
 //    }
-if(!isLeaf(current)){
+if(isLeaf(current)){
     let currentNodediv=document.createElement("div");
-   
-    currentNodediv.innerHTML=`<div>${node.question} </div>
-    <button id="${current.yes.id}" class="yes">Yes</button>
-        <button id="${current.no.id} "class="no">No</button>`;
-        currentNodediv.classList.add("node")
-    document.querySelector("#current-node").appendChild(currentNodediv);
-   
-   
-}else{
-let currentNodediv=document.createElement("div");
-   
     currentNodediv.innerHTML=`<div>${node.question} </div>
     <button id="-1" class="yes">Yes</button>
         <button id="-2" class="no">No</button>`;
         currentNodediv.classList.add("node")
+   
+    
+    document.querySelector("#current-node").appendChild(currentNodediv);
+   
+   
+}else if(!current.no){
+    let currentNodediv=document.createElement("div");
+    currentNodediv.innerHTML=`<div>${node.question} </div>
+        <button id="${current.yes.id}" class="yes">Yes</button>
+        <button id="-2" class="no">No</button>`;
+        currentNodediv.classList.add("node")
+   
+    
+    document.querySelector("#current-node").appendChild(currentNodediv);
+}else{
+let currentNodediv=document.createElement("div");
+currentNodediv.innerHTML=`<div>${node.question} </div>
+    <button id="${current.yes.id}" class="yes">Yes</button>
+        <button id="${current.no.id} "class="no">No</button>`;
+        currentNodediv.classList.add("node")
+   
+    // currentNodediv.innerHTML=`<div>${node.question} </div>
+    // <button id="-1" class="yes">Yes</button>
+    //     <button id="-2" class="no">No</button>`;
+    //     currentNodediv.classList.add("node")
     document.querySelector("#current-node").appendChild(currentNodediv);
 }
 }
@@ -64,12 +79,12 @@ function registerButtonClicks(){
         console.log(target);
         if(target.tagName==="BUTTON"){
             buttonClicked(target);
-            console.log("userClicked",target)
+            console.log("userClicked",target.id)
         }
     }
 }
 function buttonClicked(button){
-    console.log("buttonClicked",button);
+    console.log("buttonClicked",button.id);
     const index=Number(button.id);
     console.log("index : ", index);
 if(index<0){
@@ -168,6 +183,7 @@ function saveTreeAsJson(tree, filename) {
 
     function serialize(node) {
         const serializedNode = {
+            id: node.id,
             question: node.question,
             // Only serialize the ID of the parent node to avoid circular references
             parent: node.parent ? node.parent.id : null,
