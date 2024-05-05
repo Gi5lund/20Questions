@@ -1,0 +1,14 @@
+body {
+    background-color: #8f66;
+    color: #66f;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .hide{
+    display: none;
+  }
+  .show{
+    display: block;
+  }
+  #user-response{
+    
+  }

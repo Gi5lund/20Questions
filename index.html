@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link    rel="stylesheet"    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+ 
+    <link rel="stylesheet" href="style.css">
+    <title>20 Questions</title>
+</head>
+<body>
+    <main>
+        <h1>20 Questions</h1>
+        <p>Think of an object, and I will try to guess it in 20 questions or less.</p>
+        <p>Click the button to start the game.</p>
+        <div id="status"></div>
+        <button id="start">Start</button><span id="Q-remaining">questions left: 19</span><button id="export">Save Tree</button>
+        <div id="current-node">
+        
+       
+        </div>
+        <div id="user-response" class="hide">
+            <!-- <div class="input-group">
+                <span class="input-group-text">what is the correct answer?</span>
+                <textarea class="form-control" aria-label="With textarea"></textarea>
+              </div>
+              <div class="input-group">
+                <span class="input-group-text">Which question could reveal the answer?</span>
+                <textarea class="form-control" aria-label="With textarea"></textarea>
+              </div> -->
+            <label for="answer"> what is the correct answer?</label>
+            <input id="answer"/><br>
+            <label for="question">Which question could reveal the answer?</label>
+            <input id="question">
+            <button id="submit">Submit</button>
+
+        </div>
+    </main>
+    <script type="module" src="script.js"></script>
+</body>
+</html>
